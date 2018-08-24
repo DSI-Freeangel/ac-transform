@@ -11,6 +11,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Reads URL content to map. Input data should consists of two columns without header line.
+ * Requires URL and delimiter to parse file.
+ * There are few protocols supported:
+ * - file: - for local files;
+ * - ftp: - for file stored on ftp;
+ * - http: - for files available via http.
+ */
 @Builder
 @RequiredArgsConstructor
 public class URLMappingReader {
@@ -20,6 +28,13 @@ public class URLMappingReader {
     private final String url;
     private final String delimiter;
 
+    /**
+     * Reads URL content to Map
+     * @return Map<String, String> where key contains first column value and value corresponding second column value.
+     * Map size will be equals to file lines count
+     * @throws IOException in case some issues with accessing file
+     * @throws MappingFileIsNotValidException in case file have wrong structure (Ex.: more or less then 2 columns) or in case file is empty.
+     */
     public Map<String, String> read() throws IOException, MappingFileIsNotValidException {
         Map<String, String> resultMap = new HashMap<>();
         BufferedReader reader = null;

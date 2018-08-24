@@ -8,6 +8,11 @@ import lombok.experimental.Accessors;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Builds DataTransformationProcess depends on parameters passed. Use DataTransformationProcess.builder() to create new instance.
+ *
+ * @throws MissingRequiredParameterException in case there is not enough parameters to build DataTransformationProcess.
+ */
 @Setter
 @Accessors(chain = true)
 public class DataTransformationProcessBuilder {

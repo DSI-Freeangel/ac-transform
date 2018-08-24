@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Describes process that can be executed sync or async mode.
+ */
 @Slf4j
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class DataTransformationProcess {
@@ -23,6 +26,9 @@ public class DataTransformationProcess {
     private Disposable disposable;
     private CountDownLatch completionCounter;
 
+    /**
+     * Starts asynchronous processing
+     */
     public void start() {
         if(isActive()) {
             log.info("Process is already started");
@@ -35,11 +41,17 @@ public class DataTransformationProcess {
         log.info("Process started");
     }
 
+    /**
+     * Call synchronous execution of process. Waits until process will be completed.
+     */
     public void run() {
         start();
         awaitCompletion();
     }
 
+    /**
+     * Used to stop asynchronous process execution.
+     */
     public void stop() {
         if(isActive()) {
             disposable.dispose();
@@ -50,6 +62,9 @@ public class DataTransformationProcess {
         }
     }
 
+    /**
+     * Used to wait until asynchronous process will be completed.
+     */
     public void awaitCompletion() {
         if(null != completionCounter) {
             try {
@@ -60,6 +75,10 @@ public class DataTransformationProcess {
         }
     }
 
+    /**
+     * Check state of process
+     * @return true in case process is not completed or stopped yet.
+     */
     public boolean isActive() {
         return Optional.ofNullable(disposable).map(d -> !d.isDisposed()).orElse(false);
     }

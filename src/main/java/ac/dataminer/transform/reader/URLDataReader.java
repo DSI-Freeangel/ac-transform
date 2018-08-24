@@ -14,6 +14,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Default implementation of RowsDataProvider.
+ * Reads data from file.
+ * Requires delimiter and URL as parameters. URL string should starts with protocol.
+ * There are few protocols supported:
+ * - file: - for local files;
+ * - ftp: - for file stored on ftp;
+ * - http: - for files available via http.
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class URLDataReader implements RowsDataProvider {
@@ -22,6 +31,11 @@ public class URLDataReader implements RowsDataProvider {
     private BufferedReader reader;
     private String[] header;
 
+    /**
+     * Read next lines from source URL
+     * @param linesCount - count of lines to be read
+     * @return List of lines in Map representation where kay is column name and value is value in corresponding column
+     */
     @Override
     public List<Map<String, String>> next(int linesCount) {
         List<Map<String, String>> lines = new ArrayList<>(linesCount);
@@ -69,6 +83,9 @@ public class URLDataReader implements RowsDataProvider {
         return inputLine.split(delimiter);
     }
 
+    /**
+     * Use to close input stream used by this reader.
+     */
     @Override
     public void close() {
         try {

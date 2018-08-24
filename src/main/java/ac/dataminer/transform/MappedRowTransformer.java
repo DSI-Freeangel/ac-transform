@@ -9,6 +9,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Default implementation of RowTransformation. Used to transform single row.
+ * Uses 'columnsMapper' to transform column names and filter columns according to columns existing in mapping.
+ * Uses 'identifierMapper' to transform ids in 'identifierColumnName' column.
+ * Without 'identifierMapper' and 'identifierColumnName' will not transform and filter ids.
+ *
+ * @throws RowFilteredOutException in case row should be filtered out cause ID is not present in identifier mappings.
+ */
 @Builder
 @RequiredArgsConstructor
 public class MappedRowTransformer implements RowTransformation {

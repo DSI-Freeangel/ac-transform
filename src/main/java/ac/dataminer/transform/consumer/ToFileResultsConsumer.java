@@ -11,6 +11,14 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+/**
+ * Default implementation of result consumer.
+ * Writes rows into local file.
+ *
+ * Required arguments:
+ * - path - output file path to write data;
+ * - delimiter - delimiter to be used between columns in output file.
+ */
 @RequiredArgsConstructor
 public class ToFileResultsConsumer implements ResultsConsumer {
     private final String path;
