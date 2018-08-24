@@ -65,3 +65,20 @@ Please follow instructions. Example of correct command line execution command wi
 
 `java -jar transform-1.0-SNAPSHOT.jar -f file:large-data.csv -c file:column-mapping.csv -i file:identifier-mapping.csv -ic THEIR_ID -o output.csv`
 
+**Testing results:**
+
+Environment configuration:
+
+`Intel® Core™ i5-2500 CPU @ 3.30GHz × 4; 8 GB; SSD OCZ Vertex3` 
+
+Input data size:
+- Rows: `500 Columns  X  300 000 rows`
+- Size: `2.5 Gb`
+
+Filtering files conditions:
+`50% Rows & 80% columns`
+
+Output file:
+- Size: `986 Mb`
+
+Processing time: `~20 secconds`
