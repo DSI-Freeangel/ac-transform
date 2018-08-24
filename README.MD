@@ -34,6 +34,8 @@ Use mvn command ot corresponding ability of your IDE:
  
 `mvn package`
 
+You will be able to find file 'transform-1.0-SNAPSHOT.jar' in target folder after package complete.
+
 **How to run ?**
 
 You should already have jar file built (Ex.: transform-1.0-SNAPSHOT.jar). If you do not have one please build project.
